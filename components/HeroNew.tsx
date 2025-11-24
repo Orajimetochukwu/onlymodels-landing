@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, TrendingUp, DollarSign, Clock } from 'lucide-react';
+import Image from 'next/image';
 
 const stats = [
   {
@@ -45,17 +46,32 @@ export default function HeroNew() {
       ></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
+        {/* Main Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-center mb-12"
+        >
+          <Image
+            src="/logo-main.png"
+            alt="OnlyModels"
+            width={600}
+            height={200}
+            className="w-full max-w-md md:max-w-2xl h-auto object-contain"
+            priority
+          />
+        </motion.div>
+
         {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
         >
-          Scale Your OnlyFans
-          <br />
-          to the{' '}
-          <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent animate-pulse">
+          Scale Your OnlyFans to the{' '}
+          <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
             Top 0.1%
           </span>
         </motion.h1>
@@ -64,7 +80,7 @@ export default function HeroNew() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="text-xl md:text-3xl text-gray-300 mb-4 font-light"
         >
           The Agency Built by Creators, for Creators
@@ -74,7 +90,7 @@ export default function HeroNew() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base md:text-lg text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed"
         >
           Break through income plateaus. We handle chatting, marketing, and content protection

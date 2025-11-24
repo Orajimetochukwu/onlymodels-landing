@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "OnlyModels - Premium OnlyFans Agency for Top Creators",
   description: "Join the elite 0.1%. OnlyModels provides transparent management, U.S.-based chatters, military-grade content protection, and proven growth strategies for serious OnlyFans creators.",
   keywords: "OnlyFans agency, creator management, content protection, OnlyFans growth, creator agency",
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/logo-mini.png',
+  },
 };
 
 export default function RootLayout({

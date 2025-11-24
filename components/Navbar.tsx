@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,17 +37,22 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div
+          <motion.a
+            href="#home"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-3"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center font-bold text-white text-xl">
-              OM
-            </div>
-            <span className="text-xl font-bold text-white">OnlyModels</span>
-          </motion.div>
+            <Image
+              src="/logo-mini.png"
+              alt="OnlyModels"
+              width={50}
+              height={50}
+              className="w-12 h-12 object-contain"
+            />
+            <span className="text-xl font-bold text-white hidden sm:block">OnlyModels</span>
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
