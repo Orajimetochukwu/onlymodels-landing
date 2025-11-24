@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import StarBackground from "@/components/StarBackground";
+import ParticleNetwork from "@/components/ParticleNetwork";
 import CustomCursor from "@/components/CustomCursor";
 import HeroNew from "@/components/HeroNew";
 import AsSeenIn from "@/components/AsSeenIn";
@@ -27,6 +28,7 @@ export default function Home() {
     <>
       {/* Background Effects */}
       <StarBackground />
+      <ParticleNetwork />
       <div className="hidden md:block">
         <CustomCursor />
       </div>
