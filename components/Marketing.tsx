@@ -20,12 +20,12 @@ function WhatWeHandleScroll({ services }: { services: typeof services }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ['start start', 'end end'],
   });
 
   return (
-    <div ref={containerRef} className="relative min-h-[300vh] mb-12">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+    <div ref={containerRef} className="relative" style={{ height: `${services.length * 100}vh` }}>
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden py-20">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Sticky text */}
@@ -54,27 +54,36 @@ function WhatWeHandleScroll({ services }: { services: typeof services }) {
             </div>
 
             {/* Right side - Stacking cards */}
-            <div className="relative h-[600px]">
+            <div className="relative h-[500px]">
               {services.map((service, index) => {
                 const Icon = service.icon;
-                const start = index / services.length;
-                const end = (index + 1) / services.length;
+                const cardProgress = useTransform(
+                  scrollYProgress,
+                  [index / services.length, (index + 1) / services.length],
+                  [0, 1]
+                );
 
-                const opacity = useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], [0, 1, 1, 0]);
-                const scale = useTransform(scrollYProgress, [start, start + 0.1, end], [0.8, 1, 1]);
-                const y = useTransform(scrollYProgress, [start, end], [100, -100]);
+                const y = useTransform(cardProgress, [0, 1], [100, 0]);
+                const scale = useTransform(cardProgress, [0, 1], [0.9, 1]);
+                const rotateZ = useTransform(cardProgress, [0, 1], [index * 2, 0]);
 
                 return (
                   <motion.div
                     key={index}
                     style={{
-                      opacity,
-                      scale,
                       y,
+                      scale,
+                      rotateZ,
+                      zIndex: index,
                     }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute top-0 left-0 right-0"
                   >
-                    <div className="w-full max-w-lg p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
+                    <div
+                      className="w-full p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl"
+                      style={{
+                        marginTop: `${index * 20}px`,
+                      }}
+                    >
                       {/* Icon */}
                       <div className="w-16 h-16 mb-6 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center">
                         <Icon className="w-8 h-8 text-white" />
@@ -87,7 +96,7 @@ function WhatWeHandleScroll({ services }: { services: typeof services }) {
                       <p className="text-gray-300 text-lg leading-relaxed">{service.text}</p>
 
                       {/* Decorative gradient */}
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full blur-3xl" />
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full blur-3xl -z-10" />
                     </div>
                   </motion.div>
                 );
