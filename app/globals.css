@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark text-white antialiased;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(107, 70, 193, 0.5);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+}
