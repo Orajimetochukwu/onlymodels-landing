@@ -33,7 +33,7 @@ export default function ParticleNetwork() {
     // Particle configuration
     const particleCount = 80;
     const maxDistance = 150;
-    const particleSpeed = 0.3;
+    const particleSpeed = 2.0;
 
     // Initialize particles
     const initParticles = () => {
